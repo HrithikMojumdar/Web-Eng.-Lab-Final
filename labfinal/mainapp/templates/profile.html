@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="global-container p-2">
+  <div class="">
+
+    {% if profile.image.url != "" %}
+    <img src="{{profile.image.url}}" class=" rounded mx-auto d-block"></img>
+    {% else %}
+    <img src="" class=" rounded mx-auto d-block"></img>
+    
+    {% endif %}
+    <div class="card-text pt-5">
+      <h4>Name : {{ user.first_name}} {{ user.last_name}}</h4>
+      <h4>Username : {{user.username}}</h4>
+      <h4>Age : {{user.gender}} </h4>
+      <h4>Contact : +8801955182587</h4>
+      <h4>Role : User</h4>
+      <h2>
+        <a href="{% url 'profileedit' %}">
+        Edit Your Profile
+      </a>
+      </h2>
+
+
+    </div>
+  </div>
+</div>
+{% endblock %}

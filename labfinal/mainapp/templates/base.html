@@ -1,0 +1,116 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Home</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <div class="wrapper d-flex align-items-stretch">
+        <nav id="sidebar" class="bg-success">
+            <div class="p-4 pt-5">
+                <a href="#" class="img logo mb-1"
+                    style="background-image: url('../../media/images/logo.jpg');"></a>
+                <ul class="list-unstyled components mb-5">
+                    <li>
+                        <a href="{% url 'index' %}">Home</a>
+                    </li>
+                    <li class="active">
+                        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false"
+                            class="dropdown-toggle">Product</a>
+                        <ul class="collapse list-unstyled" id="homeSubmenu">
+                            <li>
+                                <a href="{% url 'Grocery' %}">Grocery</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'Dress' %}">Dress</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'Electronics' %}">Electronics</a>
+                            </li>
+                        </ul>
+                    </li>
+
+
+
+                    {% if user.is_authenticated %}
+                    <li>
+                        <a href="{% url 'logout' %}">Logout</a>
+                    </li>
+
+                    <li>
+                        <a href="{% url 'profile' %}">Profile</a>
+                    </li>
+                    {%else %}
+                    <li>
+                        <a href="{% url 'login' %}">Login</a>
+                    </li>
+                    {% endif%}
+                </ul>
+
+                <div class="footer">
+                    <p>
+                        181-15-1814
+                    </p>
+                </div>
+
+            </div>
+        </nav>
+
+        <!-- Page Content  -->
+        <div id="content" class="p-2">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item">
+                                {% if request.user.is_superuser %}
+                                <a class="nav-link" href="http://localhost:8000/admin/">Admin</a>
+                                {% endif %}
+                            </li> 
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <marquee width="100%" direction="left" style="background-color: rgb(155, 255, 152);">
+                <<<< Special offer up to 70% discount on Grocery items>>>>.
+                </marquee>
+            {% block content %}
+
+            {% endblock %}
+
+            <footer class="footer bg-primary">
+                <div class="text-center text-dark p-3">
+                    <p>@Hrithik Mojumdar_2021</p>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous">
+    </script>
+
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/popper.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+
+</html>
